@@ -1,4 +1,4 @@
-CyberDefenders-DanaBot-Lab_Walkthorugh
+CYBERDEFENDERS - DANABOT LAB WALKTHROUGH
 
 INTRO:
 
@@ -64,25 +64,27 @@ Upon navigating to the details section, we can find the MD5 hash located at the 
 ![pic8](https://github.com/user-attachments/assets/c177a8f6-a69f-48bc-bd8b-1feae4e7b27c)
 
 CONCLUSIONS:
+
 This investigation successfully identified and analyzed a DanaBot infection within the provided network traffic capture (PCAP). Leveraging tools such as Wireshark, NetworkMiner, and VirusTotal, we were able to trace the attack from initial access to the deployment of a second-stage payload.
 
 The analysis revealed the following key findings:
 
-Initial Access: The attacker gained initial access via the IP address 62.173.142.148, which initiated a three-way handshake indicative of establishing a connection with the target machine.
+- Initial Access: The attacker gained initial access via the IP address 62.173.142.148, which initiated a three-way handshake indicative of establishing a connection with the target machine.
 
-Malicious JavaScript: The initial infection vector was the malicious JavaScript file allegato_708.js, which was delivered through an HTTP GET request. Analyzing the HTTP stream in Wireshark allowed us to reconstruct the download and identify the file.
+- Malicious JavaScript: The initial infection vector was the malicious JavaScript file allegato_708.js, which was delivered through an HTTP GET request. Analyzing the HTTP stream in Wireshark allowed us to reconstruct the download and identify the file.
 
-SHA256 Hash: The SHA256 hash of the allegato_708.js file, obtained using NetworkMiner, served as a crucial indicator for further analysis.
+- SHA256 Hash: The SHA256 hash of the allegato_708.js file, obtained using NetworkMiner, served as a crucial indicator for further analysis.
 
-Execution Process: The allegato_708.js file was executed using wscript.exe, a legitimate Windows scripting host. This highlights the attacker's use of Living-off-the-Land Binaries (LOLBins) to evade initial detection. Our finding aligns with the MITRE ATT&CK framework's techniques of T1059.007 (execution of scripts) and T1071.001 (querying process information).
+- Execution Process: The allegato_708.js file was executed using wscript.exe, a legitimate Windows scripting host. This highlights the attacker's use of Living-off-the-Land Binaries (LOLBins) to evade initial detection. Our finding aligns with the MITRE ATT&CK framework's techniques of T1059.007 (execution of scripts) and T1071.001 (querying process information).
 
-Second-Stage Payload: A second malicious file with the extension .dll was identified, indicating the deployment of a secondary payload by the attacker. This is common behavior for DanaBot, which often downloads additional modules for extended functionality.
+- Second-Stage Payload: A second malicious file with the extension .dll was identified, indicating the deployment of a secondary payload by the attacker. This is common behavior for DanaBot, which often downloads additional modules for extended functionality.
 
-MD5 Hash: Analysis of the second-stage DLL file (using NetworkMiner and VirusTotal) allowed us to determine its MD5 hash, providing another critical IOC for threat hunting.
+- MD5 Hash: Analysis of the second-stage DLL file (using NetworkMiner and VirusTotal) allowed us to determine its MD5 hash, providing another critical IOC for threat hunting.
 
 Through this exercise, we successfully reconstructed the attack chain, identified key artifacts, and gained a deeper understanding of the attacker's tactics, techniques, and procedures (TTPs). This knowledge can be used to improve network defenses, develop threat hunting strategies, and enhance incident response capabilities to better defend against similar attacks in the future. The use of multiple tools and threat intelligence platforms was essential in piecing together the complete picture of the DanaBot infection.
 
 I'd like to thank CyberDefenders for creating such an engaging and realistic lab scenario. This challenge provided a fantastic opportunity to sharpen investigative skills, starting with minimal information and expanding into a thorough analysis. It’s always rewarding to connect the dots between artifacts, tools, and external research to uncover the full scope of a threat. In real-world scenarios, where speed and accuracy are critical, platforms like VirusTotal and packet analysis software like Wireshark proved to be invaluable for identifying and mitigating threats efficiently. Exercises like this are not just practice—they’re essential preparation for the challenges we face every day in cybersecurity.
 
-I hope you found this walkthrough insightful as well! If you found this content helpful, please consider giving it a clap! Your feedback is invaluable and motivates me to continue supporting your journey in the cybersecurity community. Remember, cybersecurity is a team sport, and we’re all in this together! For more insights and updates on cybersecurity analysis, follow me on Substack! [https://substack.com/@atlasprotect?r=1f5xo4&utm_campaign=profile&utm_medium=profile-page]
+I hope you found this walkthrough insightful as well! If you found this content helpful, please consider giving it a clap! Your feedback is invaluable and motivates me to continue supporting your journey in the cybersecurity community. 
+Remember, LET'S ALL BE MORE SECURE TOGETHER! For more insights and updates on cybersecurity analysis, follow me on Substack! [https://substack.com/@atlasprotect?r=1f5xo4&utm_campaign=profile&utm_medium=profile-page]
 
